@@ -1,55 +1,30 @@
 import React, { useState } from "react";
-import Contact from "./components/Contact";
-import Home from "./components/Home";
+import MyComponent from "./MyComponent";
 
 const App = () => {
-  const js = {
-    name: "javascript",
-    id: 1,
-    library: "React",
-    framework: "Angular",
-  };
-  const python = {
-    name: "python",
-    id: 2,
-    library: "numpy",
-    framework: "Django",
-  };
-  const [clicked, setClicked] = useState("");
-  const [info, setInfo] = useState("");
-  const clickedbtn = (id) => {
-    setClicked(id);
-
-    setInfo(id === "home" ? python : js);
+  const [data, setData] = useState({
+    nav: "",
+    content: "",
+  });
+  const clickButton = (action) => {
+    setData({
+      nav: action.nav,
+      content: action.content,
+    });
   };
   return (
-    <>
-      <button onClick={() => clickedbtn("home")}> Python page</button>
-      <button onClick={() => clickedbtn("contact")}>JavaScript page</button>
-      {clicked === "home" && <Home information={info} />}
-      {clicked === "contact" && <Contact information={info} />}
-    </>
+    <div>
+      <button
+        onClick={() => clickButton({ nav: "Javascript", content: "React" })}
+      >
+        javascript
+      </button>
+      <button onClick={() => clickButton({ nav: "python", content: "Django" })}>
+        Python
+      </button>
+      <MyComponent data={data} />
+    </div>
   );
 };
 
 export default App;
-
-// import React, { useState } from "react";
-
-// const App = () => {
-//   const [clicked, setClicked] = useState("");
-//   const clickedbtn = (id) => {
-//     setClicked(id);
-//   };
-//   return (
-//     <div>
-//       <button onClick={() => clickedbtn("home")}></button>
-//       <button onClick={() => clickedbtn("About")}></button>
-//       {clicked === "home" && "Home page"}
-
-//       {clicked === "About" && "About page"}
-//     </div>
-//   );
-// };
-
-// export default App;
