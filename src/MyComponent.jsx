@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const MyComponent = (props) => {
-    console.log(props);
+    const [count, setCount] = useState(0)
+   const handleIncrement = () => {
+        setCount(count+1)
+   }
+    const handleDecrement = () => {
+        setCount(count-1)
+    }
     return (
         <>
             {props.data.nav === 'Javascript' &&
@@ -17,7 +23,10 @@ const MyComponent = (props) => {
                     <p>{props.data.content}</p>
                 </>
             }
-            
+            {/* // lifecycle practice */}
+            <button onClick={handleIncrement}>Increment</button>
+            <span>{ count}</span>
+            <button onClick={handleDecrement}>Decrement</button>
         </>
     );
 };
